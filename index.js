@@ -1,6 +1,9 @@
 const width = window.innerWidth;
 const height = window.innerHeight;
 
+$("body").css('height',window.innerHeight);
+$("body").css('width',window.innerWidth);
+
 const rendererThree = new THREE.WebGLRenderer({
 	canvas: document.querySelector('canvas')
 });
@@ -34,6 +37,9 @@ for(var i=0;i<100;i++){
     scene.add(box[i]);
 }
 
+!function fullscreen(){
+    document.body.requestFullscreen();
+}();
 
 !function animate(){
     requestAnimationFrame(animate);
