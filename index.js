@@ -1,5 +1,3 @@
-document.body.requestFullscreen();
-
 const width = window.innerWidth;
 const height = window.innerHeight;
 
@@ -38,6 +36,10 @@ for(var i=0;i<100;i++){
     box[i].position.set((Math.random()*num)-num/2,(Math.random()*num)-num/2,(Math.random()*num)-num/2);
     scene.add(box[i]);
 }
+
+!function fullscreen(){
+    document.body.requestFullscreen();
+}();
 
 !function animate(){
     requestAnimationFrame(animate);
