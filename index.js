@@ -1,8 +1,8 @@
 const width = window.innerWidth;
 const height = window.innerHeight;
 
-$("body").css('height',width);
-$("body").css('width',height);
+$("body").css('height',height);
+$("body").css('width',width);
 
 const rendererThree = new THREE.WebGLRenderer({
 	canvas: document.querySelector('canvas')
