@@ -40,7 +40,7 @@
             var Cap_Gamma = 2;
             var timer = window.setInterval(() => {
                 displayData();
-                if((-Cap_Beta<=beta&&+Cap_Beta>=beta) && (-Cap_Gamma<=gamma&&Cap_Gamma>=gamma)){
+                if((-Cap_Beta<=beta&&Cap_Beta>=beta) && (-Cap_Gamma<=gamma&&Cap_Gamma>=gamma)){
                     document.getElementById("flg").innerHTML = "YES";
                     $("#flg").css("color","green");
                     document.getElementById("button").disabled = "";
