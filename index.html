@@ -5,22 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
-    <title>Document</title>
+    <title>ThreeVR</title>
     <link rel="stylesheet" href="./css/style.css">
     <script src="./js/jquery-3.4.1.min.js"></script>
 </head>
 <body>
     <div id="title">
-        <h1>title</h1>
-        <input type="button" value="押せ" onclick="change()">
+        <h1>Akatsuki's ThreeVR</h1>
+        <input id="button" type="button" value="START" onclick="change()">
+        <p>
+            判定:<span id="flg">NO</span>
+        </p>
+        <p>
+            端末を地面に並行にお持ちください。
+        </p>
+        <div id="txt">お使いのブラウザは対応しておりませんsorry</div>
     </div>
     <iframe id="frametarget" src="canvas.html"></iframe>
     <script>
         function change(){
             $('iframe').css("display","inline");
             $('#title').css("display","none");
+            document.body.requestFullscreen();
             var iframe = document.getElementById('frametarget');
             iframe.contentWindow.location.reload(true);
+        }
+        if ("ondeviceorientation" in window) {
+            window.addEventListener("deviceorientation", (dat) => {
+                alpha = dat.alpha;  // z軸（表裏
+                beta  = dat.beta;   // x軸（左右
+                gamma = dat.gamma;  // y軸（上下
+            });
+            var Cap_Beta = 2;
+            var Cap_Gamma = 2;
+            var timer = window.setInterval(() => {
+                displayData();
+                if((-Cap_Beta<=beta&&+Cap_Beta>=beta) && (-Cap_Gamma<=gamma&&Cap_Gamma>=gamma)){
+                    document.getElementById("flg").innerHTML = "YES";
+                    $("#flg").css("color","green");
+                    document.getElementById("button").disabled = "";
+                }else{
+                    document.getElementById("flg").innerHTML = "NO";
+                    $("#flg").css("color","red");
+                    document.getElementById("button").disabled = "disabled";
+                }
+            }, 33);
+            function displayData() {
+                var txt = document.getElementById("txt");
+                txt.innerHTML = "alpha: " + alpha + "<br>"+ "beta:  " + beta  + "<br>"+ "gamma: " + gamma;
+            }
+        } else {
+            document.getElementById("button").disabled = "disabled";
         }
     </script>
 </body>

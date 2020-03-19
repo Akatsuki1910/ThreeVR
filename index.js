@@ -13,11 +13,11 @@ rendererThree.setSize(width, height);
 const scene = new THREE.Scene();
 
 const camera = new THREE.PerspectiveCamera(60, width / height);
-camera.position.set(0, 0, 1000);
+camera.position.set(0, 0, 0);
 const controls = new THREE.DeviceOrientationControls(camera, true);
 controls.connect();
-const controls2 = new THREE.OrbitControls(camera);
-controls2.enableDamping = true;
+// const controls2 = new THREE.OrbitControls(camera);
+// controls2.enableDamping = true;
 
 const stats = new Stats();
 stats.domElement.style.position = 'absolute';
@@ -27,33 +27,24 @@ document.body.appendChild(stats.domElement);
 let geometry=[];
 let material=[];
 let box=[];
-let num = 900;
+let num = 4000;
 
-for(var i=0;i<100;i++){
-    geometry[i] = new THREE.CylinderGeometry(50, 50, 400, 10, 10, false );
-    material[i] = new THREE.MeshBasicMaterial( { color: 0x008866, wireframe:true} );
+for(var i=0;i<5000;i++){
+    geometry[i] = new THREE.SphereGeometry(10);
+    material[i] = new THREE.MeshBasicMaterial( { vertexColors: THREE.FaceColors} );
+    for(let l=0; l<geometry[i].faces.length; l++){geometry[i].faces[l].color.set(Math.random() * 0xCC0000);}
     box[i] = new THREE.Mesh(geometry[i], material[i]);
     box[i].position.set((Math.random()*num)-num/2,(Math.random()*num)-num/2,(Math.random()*num)-num/2);
     scene.add(box[i]);
 }
 
-!function fullscreen(){
-    document.body.requestFullscreen();
-}();
-
 !function animate(){
     requestAnimationFrame(animate);
-    for(var i=0;i<100;i++){
-        box[i].rotation.x++;
+    for(var i=0;i<box.length;i++){
+        box[i].rotation.y+=0.1;
     }
     controls.update();
     // controls2.update();
     stats.update();
 	rendererThree.render(scene, camera);
 }();
-
-window.addEventListener("deviceorientation", function(event){
-    console.log('alpha:', event.alpha);
-    console.log('beta:', event.beta);
-    console.log('gamma:', event.gamma);
-});

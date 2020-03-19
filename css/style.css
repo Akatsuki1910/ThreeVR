@@ -12,4 +12,8 @@ iframe {
   height: 100vh;
   display: none;
 }
+
+#title {
+  text-align: center;
+}
 /*# sourceMappingURL=style.css.map */
