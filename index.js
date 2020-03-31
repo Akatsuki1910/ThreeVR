@@ -38,6 +38,12 @@ for(var i=0;i<5000;i++){
     scene.add(box[i]);
 }
 
+const g = new THREE.CylinderGeometry( 5, 5, 20, 32 );
+const m = new THREE.MeshBasicMaterial( {color: 0xFF0000} );
+const b = new THREE.Mesh( g, m );
+scene.add( b );
+b.position.set(0,0,1000);
+
 !function animate(){
     requestAnimationFrame(animate);
     for(var i=0;i<box.length;i++){
