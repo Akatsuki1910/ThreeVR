@@ -42,7 +42,7 @@ let g = new THREE.CylinderGeometry( 5, 5, 20, 32 );
 let m = new THREE.MeshBasicMaterial( {color: 0xFF0000} );
 let b = new THREE.Mesh( g, m );
 scene.add( b );
-b.position.set(0,0,500);
+b.position.set(0,0,-500);
 
 !function animate(){
     requestAnimationFrame(animate);
