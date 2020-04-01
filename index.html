@@ -16,12 +16,21 @@
         <p>
             判定:<span id="flg">NO</span>
         </p>
+        <div class="result">
+            <p>
+                端末を地面に並行にお持ちください。
+            </p>
+            <p>
+                <div id="txt"></div>
+            </p>
+        </div>
         <p>
-            端末を地面に並行にお持ちください。
+            <div id="dev"></div>
+            <div id="test"></div>
         </p>
-        <div id="txt">お使いのブラウザは対応しておりませんsorry</div>
-        <div id="dev"></div>
-        <div id="test"></div>
+        <p>
+            <input id="check" type="button" value="check" onclick="check()" disabled>
+        </p>
     </div>
     <iframe id="frametarget" src="canvas.html"></iframe>
     <script src="start.js"></script>

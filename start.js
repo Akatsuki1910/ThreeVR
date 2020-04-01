@@ -12,6 +12,8 @@ var ua = [
     "iPhone"
 ];
 
+console.log(typeof DeviceOrientationEvent.requestPermission);
+
 document.getElementById("test").innerHTML = window.navigator.userAgent;
 if(((window.DeviceOrientationEvent)&&('ontouchstart' in window))){
     var iosflg=false;
@@ -19,10 +21,23 @@ if(((window.DeviceOrientationEvent)&&('ontouchstart' in window))){
 		if (window.navigator.userAgent.indexOf(ua[i]) > 0) {
             iosflg=true;
             document.getElementById("dev").innerHTML = ua[i];
+            document.getElementById("check").disabled = "";
             break;
 		}
     }
 
+    if(!iosflg){
+        document.getElementById("dev").innerHTML = "android";
+        document.getElementById("check").disabled = "";
+    }
+
+} else {
+    document.getElementById("button").disabled = "disabled";
+    document.getElementById("dev").innerHTML = "PC";
+    document.getElementById("txt").innerHTML ="お使いのブラウザは対応しておりませんsorry";
+}
+
+function check(){
     var doflg=false;
     if(iosflg){
         //ios
@@ -43,38 +58,39 @@ if(((window.DeviceOrientationEvent)&&('ontouchstart' in window))){
     }else{
         //android
         doflg=true;
-        document.getElementById("dev").innerHTML = "android";
     }
     if(doflg){
-        window.addEventListener("deviceorientation", (dat) => {
-            alpha = dat.alpha;  // z軸（表裏
-            beta  = dat.beta;   // x軸（左右
-            gamma = dat.gamma;  // y軸（上下
-        });
-        var Cap_Beta = 2;
-        var Cap_Gamma = 2;
-        var timer = window.setInterval(() => {
-            displayData();
-            if((-Cap_Beta<=beta&&Cap_Beta>=beta) && (-Cap_Gamma<=gamma&&Cap_Gamma>=gamma)){
-                document.getElementById("flg").innerHTML = "YES";
-                $("#flg").css("color","green");
-                document.getElementById("button").disabled = "";
-            }else{
-                document.getElementById("flg").innerHTML = "NO";
-                $("#flg").css("color","red");
-                document.getElementById("button").disabled = "disabled";
-            }
-        }, 33);
-
-        var displayData = ()=>{
-            var txt = document.getElementById("txt");
-            txt.innerHTML = "alpha: " + alpha + "<br>"+ "beta:  " + beta  + "<br>"+ "gamma: " + gamma;
-        };
+        main();
     }else{
         document.getElementById("button").disabled = "disabled";
         document.getElementById("dev").innerHTML = "ios12.2以下もしくはその他";
+        document.getElementById("txt").innerHTML ="お使いのブラウザは対応しておりませんsorry";
     }
-} else {
-    document.getElementById("button").disabled = "disabled";
-    document.getElementById("dev").innerHTML = "PC";
+}
+
+function main(){
+    window.addEventListener("deviceorientation", (dat) => {
+        alpha = dat.alpha;  // z軸（表裏
+        beta  = dat.beta;   // x軸（左右
+        gamma = dat.gamma;  // y軸（上下
+    });
+    var Cap_Beta = 2;
+    var Cap_Gamma = 2;
+    var timer = window.setInterval(() => {
+        displayData();
+        if((-Cap_Beta<=beta&&Cap_Beta>=beta) && (-Cap_Gamma<=gamma&&Cap_Gamma>=gamma)){
+            document.getElementById("flg").innerHTML = "YES";
+            $("#flg").css("color","green");
+            document.getElementById("button").disabled = "";
+        }else{
+            document.getElementById("flg").innerHTML = "NO";
+            $("#flg").css("color","red");
+            document.getElementById("button").disabled = "disabled";
+        }
+    }, 33);
+
+    var displayData = ()=>{
+        var txt = document.getElementById("txt");
+        txt.innerHTML = "alpha: " + alpha + "<br>"+ "beta:  " + beta  + "<br>"+ "gamma: " + gamma;
+    };
 }
