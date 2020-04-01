@@ -17,13 +17,14 @@ if(((window.DeviceOrientationEvent)&&('ontouchstart' in window))){
     var iosflg=false;
 	for (var i = 0; i < ua.length; i++) {
 		if (window.navigator.userAgent.indexOf(ua[i]) > 0) {
-            flg=true;
+            iosflg=true;
             document.getElementById("dev").innerHTML = ua[i];
             break;
 		}
     }
+
     var doflg=false;
-    if(flg){
+    if(iosflg){
         //ios
         if(typeof DeviceOrientationEvent.requestPermission==="function"){
             DeviceOrientationEvent.requestPermission().then(res => {
