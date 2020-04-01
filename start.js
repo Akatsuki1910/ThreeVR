@@ -43,6 +43,7 @@ function check(){
         //if(typeof DeviceOrientationEvent.requestPermission==="function"){
             try{
                 DeviceOrientationEvent.requestPermission().then(res => {
+                    alert(res);
                     //yes
                     if(res==="granted"){
                         doflg=true;
