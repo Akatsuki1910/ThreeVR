@@ -41,15 +41,20 @@ function check(){
     if(iosflg){
         //ios
         //if(typeof DeviceOrientationEvent.requestPermission==="function"){
-            DeviceOrientationEvent.requestPermission().then(res => {
-                //yes
-                if(res==="granted"){
-                    doflg=true;
-                //no
-                }else{
-                    doflg=false;
-                }
-            });
+            try{
+                DeviceOrientationEvent.requestPermission().then(res => {
+                    //yes
+                    if(res==="granted"){
+                        doflg=true;
+                    //no
+                    }else{
+                        doflg=false;
+                    }
+                });
+            }
+            catch(e){
+                alert(e);
+            }
         // not iOS13+
         //}else{
         //    doflg=false;
