@@ -36,23 +36,28 @@ if(((window.DeviceOrientationEvent)&&('ontouchstart' in window))){
 }
 
 function check(){
+    document.getElementById("check").disabled = "disabled";
     console.log(typeof DeviceOrientationEvent.requestPermission);
-    var doflg=false;
     if(iosflg){
         //ios
         //if(typeof DeviceOrientationEvent.requestPermission==="function"){
             try{
                 DeviceOrientationEvent.requestPermission().then(res => {
                     //yes
-                    if(res=="granted"){
-                        doflg=true;
+                    if(res === 'granted'){
+                        main();
                     //no
                     }else{
-                        doflg=false;
+                        document.getElementById("button").disabled = "disabled";
+                        document.getElementById("dev").innerHTML = "ios12.2以下もしくはその他";
+                        document.getElementById("txt").innerHTML ="お使いのブラウザは対応しておりませんsorry";
                     }
                 });
             }
             catch(e){
+                document.getElementById("button").disabled = "disabled";
+                document.getElementById("dev").innerHTML = "ios12.2以下もしくはその他";
+                document.getElementById("txt").innerHTML ="お使いのブラウザは対応しておりませんsorry";
                 alert(e);
             }
         // not iOS13+
@@ -61,14 +66,7 @@ function check(){
         //}
     }else{
         //android
-        doflg=true;
-    }
-    if(doflg){
         main();
-    }else{
-        document.getElementById("button").disabled = "disabled";
-        document.getElementById("dev").innerHTML = "ios12.2以下もしくはその他";
-        document.getElementById("txt").innerHTML ="お使いのブラウザは対応しておりませんsorry";
     }
 }
 
