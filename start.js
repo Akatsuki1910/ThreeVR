@@ -12,8 +12,6 @@ var ua = [
     "iPhone"
 ];
 
-console.log(typeof DeviceOrientationEvent.requestPermission);
-
 document.getElementById("test").innerHTML = window.navigator.userAgent;
 if(((window.DeviceOrientationEvent)&&('ontouchstart' in window))){
     var iosflg=false;
@@ -38,10 +36,11 @@ if(((window.DeviceOrientationEvent)&&('ontouchstart' in window))){
 }
 
 function check(){
+    console.log(typeof DeviceOrientationEvent.requestPermission);
     var doflg=false;
     if(iosflg){
         //ios
-        if(typeof DeviceOrientationEvent.requestPermission==="function"){
+        //if(typeof DeviceOrientationEvent.requestPermission==="function"){
             DeviceOrientationEvent.requestPermission().then(res => {
                 //yes
                 if(res==="granted"){
@@ -52,9 +51,9 @@ function check(){
                 }
             });
         // not iOS13+
-        }else{
-            doflg=false;
-        }
+        //}else{
+        //    doflg=false;
+        //}
     }else{
         //android
         doflg=true;
