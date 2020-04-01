@@ -12,11 +12,13 @@ var ua = [
     "iPhone"
 ];
 
+document.getElementById("test").innerHTML = window.navigator.userAgent;
 if(((window.DeviceOrientationEvent)&&('ontouchstart' in window))){
     var iosflg=false;
 	for (var i = 0; i < ua.length; i++) {
-		if (navigator.userAgent.indexOf(ua[i]) > 0) {
+		if (window.navigator.userAgent.indexOf(ua[i]) > 0) {
             flg=true;
+            document.getElementById("dev").innerHTML = ua[i];
             break;
 		}
     }
@@ -40,6 +42,7 @@ if(((window.DeviceOrientationEvent)&&('ontouchstart' in window))){
     }else{
         //android
         doflg=true;
+        document.getElementById("dev").innerHTML = "android";
     }
     if(doflg){
         window.addEventListener("deviceorientation", (dat) => {
@@ -68,7 +71,9 @@ if(((window.DeviceOrientationEvent)&&('ontouchstart' in window))){
         };
     }else{
         document.getElementById("button").disabled = "disabled";
+        document.getElementById("dev").innerHTML = "ios12.2以下もしくはその他";
     }
 } else {
     document.getElementById("button").disabled = "disabled";
+    document.getElementById("dev").innerHTML = "PC";
 }
