@@ -13,8 +13,8 @@ var ua = [
 ];
 
 document.getElementById("test").innerHTML = window.navigator.userAgent;
+var iosflg=false;
 if(((window.DeviceOrientationEvent)&&('ontouchstart' in window))){
-    var iosflg=false;
 	for (var i = 0; i < ua.length; i++) {
 		if (window.navigator.userAgent.indexOf(ua[i]) > 0) {
             iosflg=true;
