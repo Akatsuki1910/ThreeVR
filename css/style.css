@@ -5,7 +5,7 @@ body {
   overflow: hidden;
 }
 
-iframe {
+#threejs {
   margin: 0 auto;
   border: none;
   width: 100%;

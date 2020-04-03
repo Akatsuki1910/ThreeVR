@@ -8,6 +8,10 @@
     <title>ThreeVR</title>
     <link rel="stylesheet" href="./css/style.css">
     <script src="./js/jquery-3.4.1.min.js"></script>
+    <script src="./js/three.min.js"></script>
+    <script src="./js/DeviceOrientationControls.js"></script>
+    <script src="./js/OrbitControls.js"></script>
+    <script src="./js/stats.min.js"></script>
 </head>
 <body>
     <div id="title">
@@ -32,7 +36,11 @@
             <input id="check" type="button" value="check" onclick="check()" disabled>
         </p>
     </div>
-    <iframe id="frametarget" src="canvas.html"></iframe>
+    <noscript>
+        連絡ください<br>
+        <a href="https://twitter.com/nomber1910">twitter</a>
+    </noscript>
+    <canvas id="threejs"></canvas>
     <script src="start.js"></script>
 </body>
 </html>
