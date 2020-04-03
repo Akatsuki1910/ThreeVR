@@ -100,7 +100,7 @@ function check(){
 function main(){
     $('#threejs').css("display","inline");
     $('#title').css("display","none");
-    document.body.requestFullscreen();
+    // document.body.requestFullscreen();
 
     const width = window.innerWidth;
     const height = window.innerHeight;
