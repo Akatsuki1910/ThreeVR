@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="jp">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,31 +8,27 @@
     <title>ThreeVR</title>
     <link rel="stylesheet" href="./css/style.css">
     <script src="./js/jquery-3.4.1.min.js"></script>
+    <script src="./js/three.min.js"></script>
+    <script src="./js/DeviceOrientationControls.js"></script>
+    <script src="./js/OrbitControls.js"></script>
+    <script src="./js/stats.min.js"></script>
 </head>
 <body>
     <div id="title">
         <h1>Akatsuki's ThreeVR</h1>
-        <input id="button" type="button" value="START" onclick="change()" disabled>
+        <input id="check" type="button" value="start" onclick="check()" disabled>
         <p>
-            判定:<span id="flg">NO</span>
-        </p>
-        <div class="result">
-            <p>
-                端末を地面に並行にお持ちください。
-            </p>
-            <p>
-                <div id="txt"></div>
-            </p>
-        </div>
-        <p>
-            <div id="dev"></div>
-            <div id="test"></div>
+            <div id="txt"></div>
         </p>
         <p>
-            <input id="check" type="button" value="check" onclick="check()" disabled>
+            詳細<br>
+            <span id="test"></span>
+        </p>
+        <p>
+            <a href="http://twitter.com/nomber1910">twitter</a>
         </p>
     </div>
-    <iframe id="frametarget" src="canvas.html"></iframe>
-    <script src="start.js"></script>
+    <canvas id="threejs"></canvas>
+    <script src="index.js"></script>
 </body>
 </html>
