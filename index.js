@@ -26,7 +26,7 @@ if(((window.DeviceOrientationEvent)&&('ontouchstart' in window))){
 		}
     }
 
-    if(!iosflg && window.navigator.userAgent.indexOf("android") > 0){
+    if(!iosflg && window.navigator.userAgent.indexOf("Android") > 0){
         success();
     }
 
