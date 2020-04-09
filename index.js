@@ -37,7 +37,6 @@ if (((window.DeviceOrientationEvent) && ('ontouchstart' in window))) {
 
 function check() {
 	document.getElementById("check").disabled = "disabled";
-	console.log(typeof DeviceOrientationEvent.requestPermission);
 	if (iosflg) {
 		//ios
 		try {
