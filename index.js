@@ -62,6 +62,10 @@ function check() {
 function main() {
 	$('#pixiview').css("display", "inline");
 	$('#title').css("display", "none");
+	document.body.requestFullscreen();
+	$("body").css('height',height);
+	$("body").css('width',width);
+
 	var width = window.innerWidth;
 	var height = window.innerHeight;
 	var stage = new PIXI.Container();
