@@ -63,11 +63,11 @@ function main() {
 	$('#pixiview').css("display", "inline");
 	$('#title').css("display", "none");
 	document.body.requestFullscreen();
+	var width = window.innerWidth;
+	var height = window.innerHeight;
 	$("body").css('height',height);
 	$("body").css('width',width);
 
-	var width = window.innerWidth;
-	var height = window.innerHeight;
 	var stage = new PIXI.Container();
 	var renderer = PIXI.autoDetectRenderer({
 		width: width,
@@ -136,7 +136,7 @@ function main() {
 	scene.add(b);
 	b.position.set(0, 0, -500);
 
-	! function animate() {
+	(function animate() {
 		requestAnimationFrame(animate);
 		for (var i = 0; i < box.length; i++) {
 			box[i].rotation.y += 0.1;
@@ -146,5 +146,5 @@ function main() {
 		stats.update();
 		rendererThree.render(scene, camera);
 		renderer.render(stage);
-	}();
+	}());
 }
