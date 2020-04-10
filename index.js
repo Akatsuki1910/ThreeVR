@@ -64,10 +64,9 @@ function main() {
 	$('#title').css("display", "none");
 	document.body.requestFullscreen();
 
+	window.resizeTo(window.innerWidth, window.innerHeight);
 	var width = window.innerWidth;
 	var height = window.innerHeight;
-	document.getElementById("pixiview").resizeTo(width, height);
-	document.querySelector('canvas').resizeTo(width, height);
 
 	var stage = new PIXI.Container();
 	var renderer = PIXI.autoDetectRenderer({
@@ -136,6 +135,28 @@ function main() {
 	let b = new THREE.Mesh(g, m);
 	scene.add(b);
 	b.position.set(0, 0, -500);
+
+
+	onResize();
+	window.addEventListener('resize', onResize);
+
+	function onResize() {
+		const width = window.innerWidth;
+		const height = window.innerHeight;
+
+		renderer.resize(width,height);
+		obj.position.x = width / 2;
+		obj.position.y = height / 2;
+		obj.anchor.x = 0.5;
+		obj.anchor.y = 0.5;
+
+		rendererThree.setPixelRatio(window.devicePixelRatio);
+		rendererThree.setSize(width, height);
+
+		camera.aspect = width / height;
+		camera.updateProjectionMatrix();
+	}
+
 
 	(function animate() {
 		requestAnimationFrame(animate);
