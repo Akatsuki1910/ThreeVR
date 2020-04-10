@@ -63,10 +63,11 @@ function main() {
 	$('#pixiview').css("display", "inline");
 	$('#title').css("display", "none");
 	document.body.requestFullscreen();
+
 	var width = window.innerWidth;
 	var height = window.innerHeight;
-	$("body").css('height',height);
-	$("body").css('width',width);
+	document.getElementById("pixiview").resizeTo(width, height);
+	document.querySelector('canvas').resizeTo(width, height);
 
 	var stage = new PIXI.Container();
 	var renderer = PIXI.autoDetectRenderer({
