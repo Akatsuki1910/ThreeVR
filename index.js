@@ -77,6 +77,7 @@ function main() {
 		transparent: true
 	});
 	document.getElementById('pixiview').appendChild(renderer.view);
+
 	var word = "test";
 	var style = {
 		fontFamily: 'Arial',
@@ -91,6 +92,7 @@ function main() {
 	obj.anchor.y = 0.5;
 	stage.addChild(obj);
 
+	//threejs
 	const rendererThree = new THREE.WebGLRenderer({
 		canvas: document.querySelector('canvas')
 	});
@@ -110,6 +112,9 @@ function main() {
 	stats.domElement.style.position = 'absolute';
 	stats.domElement.style.top = '0px';
 	document.body.appendChild(stats.domElement);
+
+	var axes = new THREE.AxesHelper(1000);
+  scene.add(axes);
 
 	let geometry = new THREE.SphereGeometry(10);
 	let material = new THREE.MeshBasicMaterial({
