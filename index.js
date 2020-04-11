@@ -59,6 +59,16 @@ function check() {
 	}
 }
 
+var manager = nipplejs.create({
+	zone: document.getElementById('pixiview'),
+	catchDistance: 150,
+	color: 'white'
+});
+
+manager.on("move",(e,n)=>{
+	console.log(n.angle.degree);
+});
+
 function main() {
 	$('#pixiview').css("display", "inline");
 	$('#title').css("display", "none");
@@ -78,7 +88,7 @@ function main() {
 	});
 	document.getElementById('pixiview').appendChild(renderer.view);
 
-	var word = "test";
+	var word = "";
 	var style = {
 		fontFamily: 'Arial',
 		fontSize: '40px',
@@ -91,6 +101,9 @@ function main() {
 	obj.anchor.x = 0.5;
 	obj.anchor.y = 0.5;
 	stage.addChild(obj);
+	manager.on("move",(e,n)=>{
+		obj.text=Math.floor(n.angle.degree * 1000)/1000;
+	});
 
 	//threejs
 	const rendererThree = new THREE.WebGLRenderer({
@@ -113,8 +126,8 @@ function main() {
 	stats.domElement.style.top = '0px';
 	document.body.appendChild(stats.domElement);
 
-	var axes = new THREE.AxesHelper(1000);
-  scene.add(axes);
+	// var axes = new THREE.AxesHelper(1000); なぜか表示されない
+  // scene.add(axes);
 
 	let geometry = new THREE.SphereGeometry(10);
 	let material = new THREE.MeshBasicMaterial({
@@ -162,6 +175,14 @@ function main() {
 		camera.updateProjectionMatrix();
 	}
 
+	// window.addEventListener("deviceorientation", handleOrientation, true);
+	// function handleOrientation(event) {
+		// var absolute = event.absolute;
+		// var alpha    = event.alpha;
+		// var beta     = event.beta;
+		// var gamma    = event.gamma;
+		// console.log(alpha,beta,gamma);
+	// }
 
 	(function animate() {
 		requestAnimationFrame(animate);
