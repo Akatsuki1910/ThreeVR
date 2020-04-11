@@ -72,7 +72,7 @@ manager.on("move",(e,n)=>{
 function main() {
 	$('#pixiview').css("display", "inline");
 	$('#title').css("display", "none");
-	document.body.requestFullscreen();
+	// document.body.requestFullscreen();//ios非対応
 
 	window.resizeTo(window.innerWidth, window.innerHeight);
 	var width = window.innerWidth;
@@ -118,7 +118,7 @@ function main() {
 	camera.position.set(0, 0, 0);
 	const controls = new THREE.DeviceOrientationControls(camera, true);
 	controls.connect();
-	// const controls2 = new THREE.OrbitControls(camera);
+	// const controls2 = new THREE.OrbitControls(camera);//pc用
 	// controls2.enableDamping = true;
 
 	const stats = new Stats();
@@ -175,7 +175,7 @@ function main() {
 		camera.updateProjectionMatrix();
 	}
 
-	// window.addEventListener("deviceorientation", handleOrientation, true);
+	// window.addEventListener("deviceorientation", handleOrientation, true);//デバッグ
 	// function handleOrientation(event) {
 		// var absolute = event.absolute;
 		// var alpha    = event.alpha;
