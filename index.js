@@ -70,8 +70,8 @@ manager.on("move",(e,n)=>{
 });
 
 function main() {
-	$('#pixiview').css("display", "inline");
-	$('#title').css("display", "none");
+	document.getElementById("pixiview").style.display = "inline";
+	document.getElementById("title").style.display = "none";
 	// document.body.requestFullscreen();//ios非対応
 
 	window.resizeTo(window.innerWidth, window.innerHeight);
@@ -127,7 +127,7 @@ function main() {
 	document.body.appendChild(stats.domElement);
 
 	// var axes = new THREE.AxesHelper(1000); なぜか表示されない
-  // scene.add(axes);
+	// scene.add(axes);
 
 	let geometry = new THREE.SphereGeometry(10);
 	let material = new THREE.MeshBasicMaterial({
@@ -155,34 +155,34 @@ function main() {
 	b.position.set(0, 0, -500);
 
 
-	onResize();
-	window.addEventListener('resize', onResize);
+	// onResize(); リサイズいらなくなった
+	// window.addEventListener('resize', onResize);
 
-	function onResize() {
-		const width = window.innerWidth;
-		const height = window.innerHeight;
+	// function onResize() {
+		// const width = window.innerWidth;
+		// const height = window.innerHeight;
 
-		renderer.resize(width,height);
-		obj.position.x = width / 2;
-		obj.position.y = height / 2;
-		obj.anchor.x = 0.5;
-		obj.anchor.y = 0.5;
+		// renderer.resize(width,height);
+		// obj.position.x = width / 2;
+		// obj.position.y = height / 2;
+		// obj.anchor.x = 0.5;
+		// obj.anchor.y = 0.5;
 
-		rendererThree.setPixelRatio(window.devicePixelRatio);
-		rendererThree.setSize(width, height);
+		// rendererThree.setPixelRatio(window.devicePixelRatio);
+		// rendererThree.setSize(width, height);
 
-		camera.aspect = width / height;
-		camera.updateProjectionMatrix();
-	}
-
-	// window.addEventListener("deviceorientation", handleOrientation, true);//デバッグ
-	// function handleOrientation(event) {
-		// var absolute = event.absolute;
-		// var alpha    = event.alpha;
-		// var beta     = event.beta;
-		// var gamma    = event.gamma;
-		// console.log(alpha,beta,gamma);
+		// camera.aspect = width / height;
+		// camera.updateProjectionMatrix();
 	// }
+
+	window.addEventListener("deviceorientation", handleOrientation, true);//デバッグ
+	function handleOrientation(event) {
+		var absolute = event.absolute;
+		var alpha    = event.alpha;
+		var beta     = event.beta;
+		var gamma    = event.gamma;
+		console.log(alpha,beta,gamma);
+	}
 
 	(function animate() {
 		requestAnimationFrame(animate);
